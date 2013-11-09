@@ -1,11 +1,10 @@
 <div class="container">
 	<div class="media">
-	{{ posts.forEach(function(post) { }}
+	<% posts.forEach(function(post) { %>
 	    <div class="media-body">
-	        <h3 class="media-heading"><a href="">{{=post.title}}</a></h3>
-	        Posted on {{=post.time}}.
+	        <h3 class="media-heading"><a href="<%=post.file%>/"><%=post.file%></a></h3>
 	    </div>
 	    <hr>
-	{{ }); }}
+	<% }); %>
 	</div>
 </div>

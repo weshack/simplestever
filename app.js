@@ -41,6 +41,7 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/stylesheets', express.static(path.join(__dirname, 'public/stylesheets/')));
 app.use(partials());
+  app.use(express.errorHandler());
 
 // development only
 if ('development' == app.get('env')) {
@@ -58,13 +59,17 @@ app.get('/authenticate', dropbox_oauth.authenticate);
 app.get('/login', dropbox_oauth.checkLoggedIn);
 
 app.get('/:user/:title/', function(req, res) {
-  db.blogs.findOne({blogName:decodeURIComponent(req.body.title)}, function(err, blog) {
-
+  console.log(decodeURIComponent(req.params.title));
+  db.blogs.findOne({blogName:req.params.user}, function(err, blog) {
+    // console.log()
     if(err || !blog) {
       console.log(err);
     } else {
+      console.log(blog)
+      var posts = blog.posts.filter(function(e) { return e.file===decodeURIComponent(req.params.title); })
       parse_doc.parseDocs(blog);
-      res.render('blog.ejs', {url: blog.url});
+      console.log(posts)
+      res.render('blog.ejs', {post: posts[0]});
     }
   });
 });
@@ -76,6 +81,9 @@ db.blogs.findOne({blogName:req.params.user}, function(err, blog) {
       console.log(err);
     } else {
       parse_doc.parseDocs(blog);
+      if(typeof blog.posts === 'undefined') {
+        blog.posts = [];
+      }
       res.render('list.ejs', {posts: blog.posts});
        
         
