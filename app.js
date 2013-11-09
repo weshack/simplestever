@@ -53,6 +53,39 @@ app.get('/list', function(req,res) {
 app.get('/authenticate', dropbox_oauth.authenticate);
 app.get('/login', dropbox_oauth.checkLoggedIn);
 
+app.get('/:user/:title', function(req, res) {
+  
+});
+
+app.get('/:user', function(req, res) {
+
+  db.blogs.findOne({blogName:req.body.user}, function(err, blog) {
+    if(err || !blog) {
+      console.log(err);
+    } else {
+      db.admins.findOne({uid: blog.adminID}, function(err, user) {
+        if(err || !user) {
+          console.log(err);
+        } else {
+          console.log(user);
+            var client = new Dropbox.Client({
+              key: "4ly1p21210im5m6",
+              secret: "h5crlsw5bmsa1ff",
+              token: user.token
+            });
+          //now other stuff
+
+
+
+
+        }
+      });
+    }
+  });
+});
+
+
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
