@@ -9,7 +9,7 @@
     <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
     <style id="theme">
-      .big {background-color: #2c3e50;color: #ffffff;}
+      .big {background-color: #2c3e50;color: #ffffff;} .big a {color: #bdc3c7 !important;}
     </style>
     <style id="font">
      body {font-family: 'Source Sans Pro', serif;}
@@ -148,7 +148,8 @@
     <div id="wrap">
        <div id="header" class="big">
           <span class="inner">
-           Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.
+    <a href="./">Home</a> <span class="divider">/</span>
+  <a href="#">Read Previous</a>
             </span>
       </div>
       <div id="toolbox">
@@ -214,7 +215,7 @@
 
     <div id="footer" class="big">
       <span class="inner">
-      Read Next
+        <a href="#">Read Next</a>
       </span>
       </div>
     </div>
@@ -237,6 +238,7 @@
     <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-typeahead.js"></script>
     <script src="http://s3.amazonaws.com/jquery-font-chooser/src/jquery.fontselector.js"></script>
     <script>
+    var font;
     $("#toolbox").hide();
     $('#saveButton').hide();
     $("#settingsButton").on('click', function(e) {
@@ -244,7 +246,13 @@
       $('#saveButton').toggle();
     });
     $('#saveButton').on('click', function(e) {
-      // do all the stuff about saving
+      $.ajax({
+        type: "POST",
+        url: "http://simplestever.com/api/save",
+        data: { 'background-color': $(this).css('background-color'), 'font': font, 'blogTitle':$('#blogTitle').val() }
+      }).done(function( msg ) {
+          $("#toolbox").slideToggle();
+        });
     })
     $('#myTab a').click(function(e) {
       e.preventDefault();
@@ -271,6 +279,7 @@
           'hide_fallbacks' : true,
           'initial' : 'Source Sans Pro, sans-serif',
           'selected': function(style) {
+            font = style;
             $('#font').html('body {font-family:'+style+' !important;}')
           },
           'fonts' : [
