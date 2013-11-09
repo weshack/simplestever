@@ -128,8 +128,15 @@
             margin: 5px;
             float: left;
       }
+      #colorContainer div:first-of-type {
+            width: auto;
+      }
+      .fontSelect {
+        margin-left:15px !important;
+      }
     </style>
     <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="http://s3.amazonaws.com/jquery-font-chooser/examples/fontselector.css" rel="stylesheet">
   </head>
 
   <body>
@@ -150,8 +157,10 @@
         </ul>
          
         <div class="tab-content">
-          <div class="tab-pane active" id="style">
-            Select a color:
+          <div class="tab-pane active form-inline" id="style">
+            <div id="fontSelect" class="fontSelect">
+                <div class="arrow-down"></div>
+             </div>
             <div id="colorContainer">
               <div style="background-color:#1abc9c;"></div>
               <div style="background-color:#16a085;"></div>
@@ -174,13 +183,19 @@
               <div style="background-color:#95a5a6;"></div>
               <div style="background-color:#7f8c8d;"></div>
             </div>
+            
           </div>
           <div class="tab-pane" id="other">
+          <form class="form-inline">
+            <label class="control-label" for="blogTitle">Blog Title: </label>
+            <input class="input-xlarge" type="text" id="blogTitle" placeholder="This is your blog title" value="{{=blog.title}}">
+          </form>
             
           </div>
         </div>
       </div>
-      <span class="sidebarButton"><i class="icon-wrench"></i> Settings</span>
+      <span class="sidebarButton" id="settingsButton"><i class="icon-wrench"></i> Settings</span>
+      <span class="sidebarButton" id="saveButton"><i class="icon-hdd"></i> Save</span>
       <!-- Begin page content -->
       <div class="container">
         <div class="page-header">
@@ -218,16 +233,22 @@
     <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-collapse.js"></script>
     <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-carousel.js"></script>
     <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-typeahead.js"></script>
+    <script src="http://s3.amazonaws.com/jquery-font-chooser/src/jquery.fontselector.js"></script>
     <script>
     $("#toolbox").hide();
-    $(".sidebarButton").on('click', function(e) {
+    $('#saveButton').hide();
+    $("#settingsButton").on('click', function(e) {
       $("#toolbox").slideToggle();
+      $('#saveButton').toggle();
     });
+    $('#saveButton').on('click', function(e) {
+      // do all the stuff about saving
+    })
     $('#myTab a').click(function(e) {
       e.preventDefault();
       $(this).tab('show');
     });
-    $('#colorContainer div').click(function(e) {
+    $('#colorContainer div:not(:first)').click(function(e) {
           var color = $(this).css('background-color');
           var startIndex = color.indexOf('(') + 1;
           var lastIndex = color.indexOf(')');
@@ -243,6 +264,29 @@
           }
           $('#theme').html('.big {background-color: ' + color + ';color: ' + a + ' !important;} .big a {color: ' + b + ' !important;}');
     });
+    $(function() {
+        $('#fontSelect').fontSelector({
+          'hide_fallbacks' : true,
+          'initial' : 'Source Sans Pro, sans-serif',
+          'selected' : function(style) { console.log(style); },
+          'fonts' : [
+            'Arial,Arial,Helvetica,sans-serif',
+            'Arial Black,Arial Black,Gadget,sans-serif',
+            'Comic Sans MS,Comic Sans MS,cursive',
+            'Courier New,Courier New,Courier,monospace',
+            'Georgia,Georgia,serif',
+            'Impact,Charcoal,sans-serif',
+            'Lucida Console,Monaco,monospace',
+            'Palatino Linotype,Book Antiqua,Palatino,serif',
+            'Source Sans Pro, sans-serif',
+            'Tahoma,Geneva,sans-serif',
+            'Times New Roman,Times,serif',
+            'Trebuchet MS,Helvetica,sans-serif',
+            'Verdana,Geneva,sans-serif',
+            'Gill Sans,Geneva,sans-serif'
+            ]
+        });
+      });
     </script>
   </body>
 </html>
