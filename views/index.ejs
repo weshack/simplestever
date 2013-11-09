@@ -1,11 +1,94 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Simplest Ever</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css">
+        <style>
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+        </style>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.min.css">
+        <link rel="stylesheet" href="style.css">
+
+        <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script>window.html5 || document.write('<script src="js/html5shiv.js"><\/script>')</script>
+        <![endif]-->
+    </head>
+    <body>
+    <a href="https://github.com/joom/simplestever"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+        <div class="container">
+            <header class="launch-head">
+                <h1>Simplest Ever</h1>
+                <h2>Click below and have a blog up and running.</h2> 
+            </header>
+
+            <section id="signup-sect"> 
+                <div class="flex-container">
+
+                    <form class='fancy-form'>
+                        <div>
+                          
+                            <div class="input-prepend">
+                              <span class="add-on">http://simplestever.com/</span>
+                              <input  id="input-email" class="span3" type="text" name="username" placeholder="user name">
+                            </div>
+
+                          
+                        </div>    
+                        <a class="btn btn-primary btn-large btn-huge"><i class="fa fa-dropbox"></i> Sign in/up with Dropbox</a>                    
+                        <div id="resp" class="center-child"></div> <!-- Response message -->
+                    </form>
+                    <div class="well" id="error"></div> <!-- Error message -->
+                    <!-- <div id="share">
+                        <ul class="icons">
+                            <li class="share-button">
+                                <a href="http://twitter.com/simplestever"><i class="fa fa-twitter"></i></a></li>
+                            <li class="share-button">
+                                <a href="http://facebook.com"><i class="fa fa-facebook"></i></a></li>
+                            <li class="share-button">
+                                <a href="http://github.com/joom/simplestever"><i class="fa fa-github"></i></a></li>
+                        </ul>                       
+                    </div>-->
+                </div>
+            </section>
+
+            <section id="info" class="row">
+                <div class="span4">
+                    <h3>Write blog in Word</h3>
+                    <p>Simplest Ever can read and parse your Word documents in DOC, DOCX, RTF and ODT formats. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                </div>
+                <div class="span4">
+                    <h3>No settings needed</h3>
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+               </div>
+                <div class="span4">
+                    <h3>There is no simpler one</h3>
+                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                </div>
+            </section>
+
+            <footer id="pagefooter">
+                <p class="pull-right">©2013 Simplest Ever, created for <a href="http://y-hack.com" target="_blank">Y-Hack</a> by
+                <a href="http://github.com/Chachi-inactive" target="_blank">@Chachi-inactive</a>,
+                 <a href="http://github.com/joom" target="_blank">@joom</a>,
+                  <a href="http://github.com/AaronPlave" target="_blank">@AaronPlave</a>,
+                   <a href="http://github.com/jlashner" target="_blank">@jlashner</a></p>
+            </footer>
+        </div> <!-- /container -->
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/jquery-1.8.2.min.js"><\/script>')</script>
+
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/launch.js"></script>
+    </body>
 </html>
