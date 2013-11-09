@@ -17,7 +17,14 @@ var path = require('path');
 var dropbox_oauth = require('./lib/dropbox-authenticate');
 var partials = require('express-partials');
 var parse_doc = require('./lib/parseDoc');
-
+var db_prefs = {
+  debug: true,
+  port: 3000,
+  databaseUrl: "127.0.0.1:27017/simplestever",
+  collections: ['admins', 'blogs']
+}
+var db = require('mongojs').connect(db_prefs.databaseUrl, db_prefs.collections);
+var mongo = require('mongodb-wrapper');
 var app = express();
 
 // all environments
@@ -32,6 +39,7 @@ app.use(express.cookieParser('secret'));
 app.use(express.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/stylesheets', express.static(path.join(__dirname, 'public/stylesheets/')));
 app.use(partials());
 
 // development only
@@ -49,7 +57,7 @@ app.get('/', function(req,res) {
 app.get('/authenticate', dropbox_oauth.authenticate);
 app.get('/login', dropbox_oauth.checkLoggedIn);
 
-app.get('/:user/:title', function(req, res) {
+app.get('/:user/:title/', function(req, res) {
   db.blogs.findOne({blogName:decodeURIComponent(req.body.title)}, function(err, blog) {
 
     if(err || !blog) {
@@ -61,13 +69,15 @@ app.get('/:user/:title', function(req, res) {
   });
 });
 
-app.get('/:user', function(req, res) {
-db.blogs.findOne({blogName:req.body.user}, function(err, blog) {
+app.get('/:user/', function(req, res) {
+
+db.blogs.findOne({blogName:req.params.user}, function(err, blog) {
     if(err || !blog) {
       console.log(err);
     } else {
+      res.render('list.ejs', {posts: blog.posts});
         parse_doc.parseDocs(blog);
-        res.render('list.ejs', {posts: blog.posts});
+        
     }
   });
 
