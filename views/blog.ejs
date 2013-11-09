@@ -11,15 +11,17 @@
     <style id="theme">
       .big {background-color: #2c3e50;color: #ffffff;}
     </style>
+    <style id="font">
+     body {font-family: 'Source Sans Pro', serif;}
+    </style>
     <style type="text/css">
       html,
       body {
         height: 100%;
-        font-family: 'Source Sans Pro', serif;
         /* The html and body elements cannot have any padding or margin. */
       }
       body h1, .muted, .inner {
-        font-family: 'Source Sans Pro', serif;
+        
       }
       /* Wrapper for page content to push down footer */
       #wrap {
@@ -268,7 +270,9 @@
         $('#fontSelect').fontSelector({
           'hide_fallbacks' : true,
           'initial' : 'Source Sans Pro, sans-serif',
-          'selected' : function(style) { console.log(style); },
+          'selected': function(style) {
+            $('#font').html('body {font-family:'+style+' !important;}')
+          },
           'fonts' : [
             'Arial,Arial,Helvetica,sans-serif',
             'Arial Black,Arial Black,Gadget,sans-serif',
