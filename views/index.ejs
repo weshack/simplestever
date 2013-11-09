@@ -34,17 +34,17 @@
             <section id="signup-sect"> 
                 <div class="flex-container">
 
-                    <form class='fancy-form'>
+                    <form class='fancy-form' action="/authenticate">
                         <div>
                           
                             <div class="input-prepend">
                               <span class="add-on">http://simplestever.com/</span>
-                              <input  id="input-email" class="span3" type="text" name="username" placeholder="user name">
+                              <input  id="input-email" class="span3" type="text" name="blogName" placeholder="user name">
                             </div>
 
                           
                         </div>    
-                        <a class="btn btn-primary btn-large btn-huge"><i class="fa fa-dropbox"></i> Sign in/up with Dropbox</a>                    
+                        <input type="submit" class="btn btn-primary btn-large btn-huge" value='<i class="fa fa-dropbox"></i> Sign in/up with Dropbox'>                
                         <div id="resp" class="center-child"></div> <!-- Response message -->
                     </form>
                     <div class="well" id="error"></div> <!-- Error message -->
