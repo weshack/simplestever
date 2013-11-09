@@ -294,6 +294,11 @@
                 ]
             });
         });
+$(document).ready(function() {
+    $.get(url, function(data) {
+    $('#cont').html(data);
+    })
+});
         </script>
 </body>
 
