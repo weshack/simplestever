@@ -63,6 +63,10 @@
       .container .credit {
         margin: 20px 0;
       }
+      .tab-content {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+      }
       #leftSidebar {
                     position:fixed;
                     top:100px;
@@ -71,9 +75,8 @@
                     display:none;
                 }
       .sidebarButton {
-        position:fixed;
-        top:245px;
-        left:-5px;
+
+        margin-left: 2px;
         z-index: 1000;
         -moz-box-shadow:inset 0px 0px 4px -50px #ffffff;
         -webkit-box-shadow:inset 0px 0px 4px -50px #ffffff;
@@ -85,26 +88,27 @@
         -webkit-border-top-left-radius:0px;
         -moz-border-radius-topleft:0px;
         border-top-left-radius:0px;
-        -webkit-border-top-right-radius:11px;
-        -moz-border-radius-topright:11px;
-        border-top-right-radius:11px;
+        -webkit-border-top-right-radius:00px;
+        -moz-border-radius-topright:00px;
+        border-top-right-radius:00px;
         -webkit-border-bottom-right-radius:11px;
         -moz-border-radius-bottomright:11px;
         border-bottom-right-radius:11px;
-        -webkit-border-bottom-left-radius:0px;
-        -moz-border-radius-bottomleft:0px;
-        border-bottom-left-radius:0px;
+        -webkit-border-bottom-left-radius:11px;
+        -moz-border-radius-bottomleft:11px;
+        border-bottom-left-radius:11px;
         text-indent:0px;
         border:1px solid #5e5e5e;
         display:inline-block;
-        color:#403b40;
+        color:#222222;
         font-family:arial;
-        font-size:19px;
+        font-size:0.9em;
         font-weight:bold;
         font-style:normal;
-        height:100px;
-        line-height:100px;
-        width:26px;
+        height:26px;
+        line-height:26px;
+        padding-left:7px;
+        padding-right: 7px;
         text-decoration:none;
         text-align:center;
       }
@@ -114,9 +118,16 @@
         filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#878787', endColorstr='#999999');
         background-color:#878787;
         cursor: pointer; cursor: hand;
+        color:#222222;
       }
       .sidebarButton:active {
         opacity: 0.8;
+        color:#222222;
+      }
+      #toolbox {
+        margin-top:5px;
+        margin-left: 5px;
+
       }
     </style>
     <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet">
@@ -132,6 +143,22 @@
            Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.
             </span>
       </div>
+      <div id="toolbox">
+        <ul class="nav nav-tabs" id="myTab">
+          <li class="active"><a href="#home">Home</a></li>
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#messages">Messages</a></li>
+          <li><a href="#settings">Settings</a></li>
+        </ul>
+         
+        <div class="tab-content">
+          <div class="tab-pane active" id="home">...</div>
+          <div class="tab-pane" id="profile">..pro.</div>
+          <div class="tab-pane" id="messages">..mes.</div>
+          <div class="tab-pane" id="settings">..set.</div>
+        </div>
+      </div>
+      <span class="sidebarButton"><i class="icon-wrench"></i> Settings</span>
       <!-- Begin page content -->
       <div class="container">
         <div class="page-header">
@@ -164,7 +191,7 @@
 
           </div>
 </div>
-<span class="sidebarButton"><i class="icon-wrench"></i></span>
+
 
     <!-- Le javascript
     ================================================== -->
@@ -184,9 +211,12 @@
     <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-typeahead.js"></script>
     <script>
     $(".sidebarButton").on('click', function(e) {
-      $("#leftSidebar").toggle();
+      $("#toolbox").slideToggle();
     });
-        
+    $('#myTab a').click(function(e) {
+      e.preventDefault();
+      $(this).tab('show');
+    })
     </script>
   </body>
 </html>
