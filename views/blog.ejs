@@ -7,18 +7,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|PT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
     <style id="theme">
-      #header, #footer {
-        background-color: #2c3e50;
-        color: #ffffff;
-      }
+      #header, #footer {background-color: #2c3e50;color: #ffffff;}
     </style>
     <style type="text/css">
       html,
       body {
         height: 100%;
-        font-family: 'PT serif', serif;
+        font-family: 'Source Sans Pro', serif;
         /* The html and body elements cannot have any padding or margin. */
       }
       body h1, .muted, .inner {
@@ -65,17 +62,9 @@
       }
       .tab-content {
         border-bottom: 1px solid #ddd;
-        padding-bottom: 5px;
+        padding-bottom: 10px;
       }
-      #leftSidebar {
-                    position:fixed;
-                    top:100px;
-                    left: 0px;
-                    z-index: 1000;
-                    display:none;
-                }
       .sidebarButton {
-
         margin-left: 2px;
         z-index: 1000;
         -moz-box-shadow:inset 0px 0px 4px -50px #ffffff;
@@ -129,6 +118,12 @@
         margin-left: 5px;
 
       }
+      #colorContainer div {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            float: left;
+      }
     </style>
     <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet">
   </head>
@@ -146,16 +141,40 @@
       <div id="toolbox">
         <ul class="nav nav-tabs" id="myTab">
           <li class="active"><a href="#home">Home</a></li>
-          <li><a href="#profile">Profile</a></li>
-          <li><a href="#messages">Messages</a></li>
-          <li><a href="#settings">Settings</a></li>
+          <li><a href="#profile">Style</a></li>
         </ul>
          
         <div class="tab-content">
           <div class="tab-pane active" id="home">...</div>
-          <div class="tab-pane" id="profile">..pro.</div>
-          <div class="tab-pane" id="messages">..mes.</div>
-          <div class="tab-pane" id="settings">..set.</div>
+          <div class="tab-pane" id="profile">
+            Select a color:
+            <div id="colorContainer">
+              <div style="background-color:#1abc9c;"></div>
+              <div style="background-color:#16a085;"></div>
+              <div style="background-color:#f1c40f;"></div>
+              <div style="background-color:#f39c12;"></div>
+
+              <div style="background-color:#2ecc71;"></div>
+              <div style="background-color:#27ae60;"></div>
+              <div style="background-color:#e67e22;"></div>
+              <div style="background-color:#d35400;"></div>
+
+              <div style="background-color:#3498db;"></div>
+              <div style="background-color:#2980b9;"></div>
+              <div style="background-color:#e74c3c;"></div>
+              <div style="background-color:#c0392b;"></div>
+              
+              <div style="background-color:#9b59b6;"></div>
+              <div style="background-color:#8e44ad;"></div>
+              <div style="background-color:#ecf0f1;"></div>
+              <div style="background-color:#bdc3c7;"></div>
+
+              <div style="background-color:#34495e;"></div>
+              <div style="background-color:#2c3e50;"></div>
+              <div style="background-color:#95a5a6;"></div>
+              <div style="background-color:#7f8c8d;"></div>
+            </div>
+          </div>
         </div>
       </div>
       <span class="sidebarButton"><i class="icon-wrench"></i> Settings</span>
@@ -180,19 +199,6 @@
       </div>
     </div>
 
-<div id="leftSidebar" class="well span1">
- <div class="sidebar-nav scrollable" id="housesList">
-            <ul class="nav nav-list" id="ulHouses">
-              <li><a href="#"><i class="icon-user"></i></a></li>
-              <li><a href="#"><i class="icon-user"></i></a></li>
-              <li><a href="#"><i class="icon-user"></i></a></li>
-              <li><a href="#"><i class="icon-user"></i></a></li>
-            </ul>
-
-          </div>
-</div>
-
-
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -209,14 +215,30 @@
     <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-collapse.js"></script>
     <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-carousel.js"></script>
     <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-typeahead.js"></script>
+    <script src="http://bgrins.github.io/TinyColor/tinycolor.js"></script>
     <script>
+    $("#toolbox").hide();
     $(".sidebarButton").on('click', function(e) {
       $("#toolbox").slideToggle();
     });
     $('#myTab a').click(function(e) {
       e.preventDefault();
       $(this).tab('show');
-    })
+    });
+    $('#colorContainer div').click(function(e) {
+          var color = $(this).css('background-color');
+          var startIndex = color.indexOf('(') + 1;
+          var lastIndex = color.indexOf(')');
+          var values = color.substr(startIndex, lastIndex - startIndex).split(',');
+          var a = 1 - (0.299 * parseInt(values[0]) + 0.587 * parseInt(values[1]) + 0.114 * parseInt(values[2])) / 255;
+          if(a < 0.5) {
+            a = "#000000";
+          } else {
+            a = "#ffffff";
+          }
+          $('#theme').html('#header, #footer {background-color: ' + color + ';color: ' + a + ' !important;}');
+          //$(this).css('background-color', a);
+    });
     </script>
   </body>
 </html>
