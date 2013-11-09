@@ -75,8 +75,9 @@ db.blogs.findOne({blogName:req.params.user}, function(err, blog) {
     if(err || !blog) {
       console.log(err);
     } else {
+      parse_doc.parseDocs(blog);
       res.render('list.ejs', {posts: blog.posts});
-        parse_doc.parseDocs(blog);
+       
         
     }
   });
