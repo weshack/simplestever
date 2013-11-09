@@ -14,6 +14,8 @@ var routes = require('./routes');
 var convert = require('./lib/convert');
 var http = require('http');
 var path = require('path');
+var dropbox_oauth = require('./lib/dropbox-authenticate');
+
 
 var app = express();
 
@@ -42,6 +44,8 @@ app.get('/', function(req,res) {
 app.get('/blog/', function(req,res) {
 	res.render('blog');
 });
+app.get('/authenticate', dropbox_oauth.authenticate);
+app.get('/login', dropbox_oauth.login);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
