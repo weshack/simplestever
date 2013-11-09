@@ -16,6 +16,7 @@ var http = require('http');
 var path = require('path');
 var dropbox_oauth = require('./lib/dropbox-authenticate');
 var partials = require('express-partials');
+var parse_doc = require('./lib/parseDoc');
 
 var app = express();
 
@@ -50,9 +51,11 @@ app.get('/login', dropbox_oauth.checkLoggedIn);
 
 app.get('/:user/:title', function(req, res) {
   db.blogs.findOne({blogName:decodeURIComponent(req.body.title)}, function(err, blog) {
+
     if(err || !blog) {
       console.log(err);
     } else {
+      parse_doc.parseDocs(blog);
       res.render('blog.ejs', {url: blog.url});
     }
   });
@@ -63,7 +66,8 @@ db.blogs.findOne({blogName:req.body.user}, function(err, blog) {
     if(err || !blog) {
       console.log(err);
     } else {
-      res.render('list.ejs', {posts: blog.posts});
+        parse_doc.parseDocs(blog);
+        res.render('list.ejs', {posts: blog.posts});
     }
   });
 
