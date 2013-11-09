@@ -45,7 +45,7 @@ app.get('/blog/', function(req,res) {
 	res.render('blog');
 });
 app.get('/authenticate', dropbox_oauth.authenticate);
-app.get('/login', dropbox_oauth.login);
+app.get('/login', dropbox_oauth.checkLoggedIn);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
