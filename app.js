@@ -44,22 +44,30 @@ if ('development' == app.get('env')) {
 app.get('/', function(req,res) {
   res.render('index.ejs', {layout: false});
 });
-app.get('/blog', function(req,res) {
-  res.render('blog.ejs');
-});
-app.get('/list', function(req,res) {
-  res.render('list.ejs');
-});
+
 app.get('/authenticate', dropbox_oauth.authenticate);
 app.get('/login', dropbox_oauth.checkLoggedIn);
 
 app.get('/:user/:title', function(req, res) {
-  
+  db.blogs.findOne({blogName:decodeURIComponent(req.body.title)}, function(err, blog) {
+    if(err || !blog) {
+      console.log(err);
+    } else {
+      res.render('blog.ejs', {url: blog.url});
+    }
+  });
 });
 
 app.get('/:user', function(req, res) {
+db.blogs.findOne({blogName:req.body.user}, function(err, blog) {
+    if(err || !blog) {
+      console.log(err);
+    } else {
+      res.render('list.ejs', {posts: blog.posts});
+    }
+  });
 
-  db.blogs.findOne({blogName:req.body.user}, function(err, blog) {
+ /* db.blogs.findOne({blogName:req.body.user}, function(err, blog) {
     if(err || !blog) {
       console.log(err);
     } else {
@@ -74,16 +82,11 @@ app.get('/:user', function(req, res) {
               token: user.token
             });
           //now other stuff
-
-
-
-
         }
       });
     }
-  });
+  });*/
 });
-
 
 
 http.createServer(app).listen(app.get('port'), function(){
