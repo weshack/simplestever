@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{=post.title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|PT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+    <style id="theme">
+      #header, #footer {
+        background-color: #2c3e50;
+        color: #ffffff;
+      }
+    </style>
+    <style type="text/css">
+      html,
+      body {
+        height: 100%;
+        font-family: 'PT serif', serif;
+        /* The html and body elements cannot have any padding or margin. */
+      }
+      body h1, .muted, .inner {
+        font-family: 'Source Sans Pro', serif;
+      }
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -100px;
+      }
+
+      /* Set the fixed height of the footer here */
+      #push, #header, #footer {
+        display: table;
+        width: 100%;
+        height: 100px;
+        text-align: center;
+        color:#ffffff;
+      }
+      .inner {
+        display: table-cell;
+        vertical-align: middle;
+        font-size: 1.1em;
+      }
+
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #header, #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+      .container {
+        width: auto;
+        max-width: 680px;
+      }
+      .container .credit {
+        margin: 20px 0;
+      }
+      #leftSidebar {
+                    position:fixed;
+                    top:100px;
+                    left: 0px;
+                    z-index: 1000;
+                    display:none;
+                }
+      .sidebarButton {
+        position:fixed;
+        top:245px;
+        left:-5px;
+        z-index: 1000;
+        -moz-box-shadow:inset 0px 0px 4px -50px #ffffff;
+        -webkit-box-shadow:inset 0px 0px 4px -50px #ffffff;
+        box-shadow:inset 0px 0px 4px -50px #ffffff;
+        background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #999999), color-stop(1, #878787) );
+        background:-moz-linear-gradient( center top, #999999 5%, #878787 100% );
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#999999', endColorstr='#878787');
+        background-color:#999999;
+        -webkit-border-top-left-radius:0px;
+        -moz-border-radius-topleft:0px;
+        border-top-left-radius:0px;
+        -webkit-border-top-right-radius:11px;
+        -moz-border-radius-topright:11px;
+        border-top-right-radius:11px;
+        -webkit-border-bottom-right-radius:11px;
+        -moz-border-radius-bottomright:11px;
+        border-bottom-right-radius:11px;
+        -webkit-border-bottom-left-radius:0px;
+        -moz-border-radius-bottomleft:0px;
+        border-bottom-left-radius:0px;
+        text-indent:0px;
+        border:1px solid #5e5e5e;
+        display:inline-block;
+        color:#403b40;
+        font-family:arial;
+        font-size:19px;
+        font-weight:bold;
+        font-style:normal;
+        height:100px;
+        line-height:100px;
+        width:26px;
+        text-decoration:none;
+        text-align:center;
+      }
+      .sidebarButton:hover {
+        background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #878787), color-stop(1, #999999) );
+        background:-moz-linear-gradient( center top, #878787 5%, #999999 100% );
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#878787', endColorstr='#999999');
+        background-color:#878787;
+        cursor: pointer; cursor: hand;
+      }
+      .sidebarButton:active {
+        opacity: 0.8;
+      }
+    </style>
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+    <!-- Part 1: Wrap all page content here -->
+    <div id="wrap">
+       <div id="header">
+          <span class="inner">
+           Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.
+            </span>
+      </div>
+      <!-- Begin page content -->
+      <div class="container">
+        <div class="page-header">
+        <p class="muted">Posted on {{=post.time}}.</p>
+          <h1>{{=post.title}}</h1>
+        </div>
+        {{=post.content}}
+        <hr>
+        <!--<p class="muted">Share this</p>-->
+      </div>
+
+      <div id="push"></div>
+    </div>
+
+    <div id="footer">
+      <span class="inner">
+      Read Next
+      </span>
+      </div>
+    </div>
+
+<div id="leftSidebar" class="well span1">
+ <div class="sidebar-nav scrollable" id="housesList">
+            <ul class="nav nav-list" id="ulHouses">
+              <li><a href="#"><i class="icon-user"></i></a></li>
+              <li><a href="#"><i class="icon-user"></i></a></li>
+              <li><a href="#"><i class="icon-user"></i></a></li>
+              <li><a href="#"><i class="icon-user"></i></a></li>
+            </ul>
+
+          </div>
+</div>
+<span class="sidebarButton"><i class="icon-wrench"></i></span>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://getbootstrap.com/2.3.2/assets/js/jquery.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-transition.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-alert.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-modal.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-dropdown.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-tab.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-tooltip.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-popover.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-button.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-collapse.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-carousel.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-typeahead.js"></script>
+    <script>
+    $(".sidebarButton").on('click', function(e) {
+      $("#leftSidebar").toggle();
+    });
+        
+    </script>
+  </body>
+</html>
