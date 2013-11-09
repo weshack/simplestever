@@ -1,305 +1,53 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>{{=post.title}}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
-    <style id="theme">
-      .big {background-color: #2c3e50;color: #ffffff;} .big a {color: #bdc3c7 !important;}
-    </style>
-    <style id="font">
-     body {font-family: 'Source Sans Pro', serif;}
-    </style>
-    <style type="text/css">
-      html,
-      body {
-        height: 100%;
-        /* The html and body elements cannot have any padding or margin. */
-      }
-      body h1, .muted, .inner {
-        
-      }
-      /* Wrapper for page content to push down footer */
-      #wrap {
-        min-height: 100%;
-        height: auto !important;
-        height: 100%;
-        /* Negative indent footer by it's height */
-        margin: 0 auto -100px;
-      }
-
-      /* Set the fixed height of the footer here */
-      #push, .big {
-        display: table;
-        width: 100%;
-        height: 100px;
-        text-align: center;
-        color:#ffffff;
-      }
-      .big a {
-        text-decoration: underline;
-      }
-      .inner {
-        display: table-cell;
-        vertical-align: middle;
-        font-size: 1.1em;
-      }
-
-      /* Lastly, apply responsive CSS fixes as necessary */
-      @media (max-width: 767px) {
-        .big {
-          margin-left: -20px;
-          margin-right: -20px;
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-      }
-      .container {
-        width: auto;
-        max-width: 680px;
-      }
-      .container .credit {
-        margin: 20px 0;
-      }
-      .tab-content {
-        margin-top:-15px;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 10px;
-      }
-      .sidebarButton {
-        margin-left: 2px;
-        z-index: 1000;
-        -moz-box-shadow:inset 0px 0px 4px -50px #ffffff;
-        -webkit-box-shadow:inset 0px 0px 4px -50px #ffffff;
-        box-shadow:inset 0px 0px 4px -50px #ffffff;
-        background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #999999), color-stop(1, #878787) );
-        background:-moz-linear-gradient( center top, #999999 5%, #878787 100% );
-        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#999999', endColorstr='#878787');
-        background-color:#999999;
-        -webkit-border-top-left-radius:0px;
-        -moz-border-radius-topleft:0px;
-        border-top-left-radius:0px;
-        -webkit-border-top-right-radius:00px;
-        -moz-border-radius-topright:00px;
-        border-top-right-radius:00px;
-        -webkit-border-bottom-right-radius:11px;
-        -moz-border-radius-bottomright:11px;
-        border-bottom-right-radius:11px;
-        -webkit-border-bottom-left-radius:11px;
-        -moz-border-radius-bottomleft:11px;
-        border-bottom-left-radius:11px;
-        text-indent:0px;
-        border:1px solid #5e5e5e;
-        display:inline-block;
-        color:#222222;
-        font-family:arial;
-        font-size:0.9em;
-        font-weight:bold;
-        font-style:normal;
-        height:26px;
-        line-height:26px;
-        padding-left:7px;
-        padding-right: 7px;
-        text-decoration:none;
-        text-align:center;
-      }
-      .sidebarButton:hover {
-        background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #878787), color-stop(1, #999999) );
-        background:-moz-linear-gradient( center top, #878787 5%, #999999 100% );
-        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#878787', endColorstr='#999999');
-        background-color:#878787;
-        cursor: pointer; cursor: hand;
-        color:#222222;
-      }
-      .sidebarButton:active {
-        opacity: 0.8;
-        color:#222222;
-      }
-      #toolbox {
-        margin-top:5px;
-        margin-left: 5px;
-
-      }
-      #colorContainer div {
-            width: 40px;
-            height: 40px;
-            margin: 5px;
-            float: left;
-      }
-      #colorContainer div:first-of-type {
-            width: auto;
-      }
-      .fontSelect {
-        margin-left:15px !important;
-      }
-    </style>
-    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="http://s3.amazonaws.com/jquery-font-chooser/examples/fontselector.css" rel="stylesheet">
-  </head>
-
-  <body>
-
-
-    <!-- Part 1: Wrap all page content here -->
-    <div id="wrap">
-       <div id="header" class="big">
-          <span class="inner">
-    <a href="./">Home</a> <span class="divider">/</span>
-  <a href="#">Read Previous</a>
-            </span>
-      </div>
-      <div id="toolbox">
-        <ul class="nav nav-tabs" id="myTab">
-          
-          <li class="active"><a href="#style">Style</a></li>
-          <li><a href="#other">Other</a></li>
-        </ul>
-         
-        <div class="tab-content">
-          <div class="tab-pane active form-inline" id="style">
+<div id="toolbox">
+    <ul class="nav nav-tabs" id="myTab">
+        <li class="active"><a href="#style">Style</a>
+        </li>
+        <li><a href="#other">Other</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active form-inline" id="style">
             <div id="fontSelect" class="fontSelect">
                 <div class="arrow-down"></div>
-             </div>
-            <div id="colorContainer">
-              <div style="background-color:#1abc9c;"></div>
-              <div style="background-color:#16a085;"></div>
-              <div style="background-color:#f1c40f;"></div>
-              <div style="background-color:#f39c12;"></div>
-              <div style="background-color:#2ecc71;"></div>
-              <div style="background-color:#27ae60;"></div>
-              <div style="background-color:#e67e22;"></div>
-              <div style="background-color:#d35400;"></div>
-              <div style="background-color:#3498db;"></div>
-              <div style="background-color:#2980b9;"></div>
-              <div style="background-color:#e74c3c;"></div>
-              <div style="background-color:#c0392b;"></div>
-              <div style="background-color:#9b59b6;"></div>
-              <div style="background-color:#8e44ad;"></div>
-              <div style="background-color:#ecf0f1;"></div>
-              <div style="background-color:#bdc3c7;"></div>
-              <div style="background-color:#34495e;"></div>
-              <div style="background-color:#2c3e50;"></div>
-              <div style="background-color:#95a5a6;"></div>
-              <div style="background-color:#7f8c8d;"></div>
             </div>
-            
-          </div>
-          <div class="tab-pane" id="other">
-          <form class="form-inline">
-            <label class="control-label" for="blogTitle">Blog Title: </label>
-            <input class="input-xlarge" type="text" id="blogTitle" placeholder="This is your blog title" value="{{=blog.title}}">
-          </form>
-            
-          </div>
+            <div id="colorContainer">
+                <div style="background-color:#1abc9c;"></div>
+                <div style="background-color:#16a085;"></div>
+                <div style="background-color:#f1c40f;"></div>
+                <div style="background-color:#f39c12;"></div>
+                <div style="background-color:#2ecc71;"></div>
+                <div style="background-color:#27ae60;"></div>
+                <div style="background-color:#e67e22;"></div>
+                <div style="background-color:#d35400;"></div>
+                <div style="background-color:#3498db;"></div>
+                <div style="background-color:#2980b9;"></div>
+                <div style="background-color:#e74c3c;"></div>
+                <div style="background-color:#c0392b;"></div>
+                <div style="background-color:#9b59b6;"></div>
+                <div style="background-color:#8e44ad;"></div>
+                <div style="background-color:#ecf0f1;"></div>
+                <div style="background-color:#bdc3c7;"></div>
+                <div style="background-color:#34495e;"></div>
+                <div style="background-color:#2c3e50;"></div>
+                <div style="background-color:#95a5a6;"></div>
+                <div style="background-color:#7f8c8d;"></div>
+            </div>
         </div>
-      </div>
-      <span class="sidebarButton" id="settingsButton"><i class="icon-wrench"></i> Settings</span>
-      <span class="sidebarButton" id="saveButton"><i class="icon-hdd"></i> Save</span>
-      <!-- Begin page content -->
-      <div class="container">
-        <div class="page-header">
+        <div class="tab-pane" id="other">
+            <form class="form-inline">
+                <label class="control-label" for="blogTitle">Blog Title:</label>
+                <input class="input-xlarge" type="text" id="blogTitle" placeholder="This is your blog title" value="{{=blog.title}}">
+            </form>
+        </div>
+    </div>
+</div> <span class="sidebarButton" id="settingsButton"><i class="icon-wrench"></i> Settings</span>
+<span class="sidebarButton" id="saveButton"><i class="icon-hdd"></i> Save</span>
+<!-- Begin page content -->
+<div class="container">
+    <div class="page-header">
         <p class="muted">Posted on {{=post.time}}.</p>
-          <h1>{{=post.title}}</h1>
-        </div>
-        {{=post.content}}
-        <hr>
-        <!--<p class="muted">Share this</p>-->
-      </div>
-
-      <div id="push"></div>
-    </div>
-
-    <div id="footer" class="big">
-      <span class="inner">
-        <a href="#">Read Next</a>
-      </span>
-      </div>
-    </div>
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://getbootstrap.com/2.3.2/assets/js/jquery.js"></script>
-    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-transition.js"></script>
-    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-alert.js"></script>
-    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-modal.js"></script>
-    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-dropdown.js"></script>
-    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-scrollspy.js"></script>
-    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-tab.js"></script>
-    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-tooltip.js"></script>
-    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-popover.js"></script>
-    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-button.js"></script>
-    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-collapse.js"></script>
-    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-carousel.js"></script>
-    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-typeahead.js"></script>
-    <script src="http://s3.amazonaws.com/jquery-font-chooser/src/jquery.fontselector.js"></script>
-    <script>
-    var font;
-    $("#toolbox").hide();
-    $('#saveButton').hide();
-    $("#settingsButton").on('click', function(e) {
-      $("#toolbox").slideToggle();
-      $('#saveButton').toggle();
-    });
-    $('#saveButton').on('click', function(e) {
-      $.ajax({
-        type: "POST",
-        url: "http://simplestever.com/api/save",
-        data: { 'background-color': $(this).css('background-color'), 'font': font, 'blogTitle':$('#blogTitle').val() }
-      }).done(function( msg ) {
-          $("#toolbox").slideToggle();
-        });
-    })
-    $('#myTab a').click(function(e) {
-      e.preventDefault();
-      $(this).tab('show');
-    });
-    $('#colorContainer div:not(:first)').click(function(e) {
-          var color = $(this).css('background-color');
-          var startIndex = color.indexOf('(') + 1;
-          var lastIndex = color.indexOf(')');
-          var values = color.substr(startIndex, lastIndex - startIndex).split(',');
-          var a = 1 - (0.299 * parseInt(values[0]) + 0.587 * parseInt(values[1]) + 0.114 * parseInt(values[2])) / 255;
-          var b = '';
-          if(a < 0.5) { //bright colors - black font
-            a = "#000000";
-            b = "#34495e";
-          } else { //dark colors - white font
-            a = "#ffffff";
-            b = "#bdc3c7";
-          }
-          $('#theme').html('.big {background-color: ' + color + ';color: ' + a + ' !important;} .big a {color: ' + b + ' !important;}');
-    });
-    $(function() {
-        $('#fontSelect').fontSelector({
-          'hide_fallbacks' : true,
-          'initial' : 'Source Sans Pro, sans-serif',
-          'selected': function(style) {
-            font = style;
-            $('#font').html('body {font-family:'+style+' !important;}')
-          },
-          'fonts' : [
-            'Arial,Arial,Helvetica,sans-serif',
-            'Arial Black,Arial Black,Gadget,sans-serif',
-            'Comic Sans MS,Comic Sans MS,cursive',
-            'Courier New,Courier New,Courier,monospace',
-            'Georgia,Georgia,serif',
-            'Impact,Charcoal,sans-serif',
-            'Lucida Console,Monaco,monospace',
-            'Palatino Linotype,Book Antiqua,Palatino,serif',
-            'Source Sans Pro, sans-serif',
-            'Tahoma,Geneva,sans-serif',
-            'Times New Roman,Times,serif',
-            'Trebuchet MS,Helvetica,sans-serif',
-            'Verdana,Geneva,sans-serif',
-            'Gill Sans,Geneva,sans-serif'
-            ]
-        });
-      });
-    </script>
-  </body>
-</html>
+        <h1>{{=post.title}}</h1>
+    </div>{{=post.content}}
+    <hr>
+    <!--<p class="muted">Share this</p>-->
+</div>

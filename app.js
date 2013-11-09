@@ -15,14 +15,14 @@ var convert = require('./lib/convert');
 var http = require('http');
 var path = require('path');
 var dropbox_oauth = require('./lib/dropbox-authenticate');
-
+var partials = require('express-partials');
 
 var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+app.use(partials());
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
@@ -31,6 +31,7 @@ app.use(express.cookieParser('secret'));
 app.use(express.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(partials());
 
 // development only
 if ('development' == app.get('env')) {
@@ -41,10 +42,13 @@ if ('development' == app.get('env')) {
 
 // these are only for template testing
 app.get('/', function(req,res) {
-	res.render('index');
+  res.render('index.ejs', {layout: false});
 });
-app.get('/blog/', function(req,res) {
-	res.render('blog');
+app.get('/blog', function(req,res) {
+  res.render('blog.ejs');
+});
+app.get('/list', function(req,res) {
+  res.render('list.ejs');
 });
 app.get('/authenticate', dropbox_oauth.authenticate);
 app.get('/login', dropbox_oauth.checkLoggedIn);
